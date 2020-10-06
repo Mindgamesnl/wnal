@@ -1,0 +1,4 @@
+show-sequencer/dist/OpenAudioMc.bundle.js
+node_modules/*
+bulid/*
+target/*
