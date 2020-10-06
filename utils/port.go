@@ -4,10 +4,9 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"strconv"
 )
 
-func FindPortOrFail() int {
+func FindPortOrFail() string {
 	error, portIndex := FindStartingIndex()
 
 	if error != nil {
@@ -28,6 +27,5 @@ func FindPortOrFail() int {
 	}
 
 	_ = ln.Close()
-	p, _ := strconv.Atoi(os.Args[portIndex])
-	return p
+	return os.Args[portIndex]
 }
