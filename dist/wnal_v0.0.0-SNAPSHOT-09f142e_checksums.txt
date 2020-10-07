@@ -1,0 +1,4 @@
+4f2eb50ad8ce56bf99c844fa1c5c1b9948a7bf0dee982bfc4044244ac2a7aa74  wnal_v0.0.0-SNAPSHOT-09f142e_darwin_386.tar.gz
+a6e412892a79ec2925d3526b367ceb59f017c488980edb22b1c0cd1598b7c9d5  wnal_v0.0.0-SNAPSHOT-09f142e_linux_386.tar.gz
+d799f2c8cda72cca6567521e67328aa7257fead66e5784ba1db0bd96bd1ab870  wnal_v0.0.0-SNAPSHOT-09f142e_linux_amd64.tar.gz
+da10aaa26e243f69d25df4a39507ad426897646cc4f225a47149998a0abe1b3b  wnal_v0.0.0-SNAPSHOT-09f142e_darwin_amd64.tar.gz
