@@ -8,16 +8,12 @@ html, body {
 }
 
 #consoleRow{
-    position: absolute;
-    top: 83px;
     left: 15px;
     right: 15px;
     bottom: 15px;
 }
 
 #alertMessage{
-    position: absolute;
-    top: 15px;
     left: 15px;
     right: 15px;
 }

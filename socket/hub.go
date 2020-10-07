@@ -1,5 +1,10 @@
 package socket
 
+import (
+	"github.com/Mindgamesnl/wnal/process"
+	"io"
+)
+
 type hub struct {
 	clients map[int]*client
 	dispatch chan interface{}
@@ -38,12 +43,13 @@ func (h *hub) start() {
 
 func (h *hub) watchDisconnect(client *client) {
 	for {
-		_, _, err := client.conn.ReadMessage()
+		_, message, err := client.conn.ReadMessage()
 		if err != nil {
 			client.Close()
 			h.Deregister(client)
 			return
 		}
+		io.WriteString(process.CommandWriter, string(message))
 	}
 }
 

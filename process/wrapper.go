@@ -1,26 +1,38 @@
 package process
 
 import (
+	"github.com/Mindgamesnl/wnal/utils"
 	"github.com/Mindgamesnl/wnal/wio"
-	"os"
+	"io"
+	"log"
 	"os/exec"
 )
 
-func WrapCommand(command string, onWrite func(a []byte), onError func(a []byte)) {
-	cmd := exec.Command(command)
+var Command *exec.Cmd
+var CommandWriter io.WriteCloser
 
-	cmd.Stdout = wio.WrappedWriter{
+func WrapCommand(command string, args []string, onWrite func(a []byte), onError func(a []byte)) {
+	Command = exec.Command(command, args...)
+
+	Command.Stdout = wio.WrappedWriter{
 		OnWrite: onWrite,
 		Replaces: wio.RealHandlerSet.Out,
 	}
 
-	cmd.Stderr = wio.WrappedWriter{
+	Command.Stderr = wio.WrappedWriter{
 		OnWrite: onError,
 		Replaces: wio.RealHandlerSet.Error,
 	}
 
-	cmd.Stdin = os.Stdin
+	epi, er := Command.StdinPipe()
+	if er != nil {
+		println(er)
+	}
+	CommandWriter = epi
 
-	cmd.Run()
-	cmd.Wait()
+	Command.Start()
+	error := Command.Wait()
+	if error != nil {
+		log.Println("Could not execute command " + utils.FindCommand())
+	}
 }

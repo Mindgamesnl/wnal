@@ -1,6 +1,7 @@
 package socket
 
 import (
+	"github.com/Mindgamesnl/wnal/queue"
 	"github.com/gorilla/websocket"
 	"log"
 )
@@ -29,6 +30,11 @@ func (c *client) Close() {
 }
 
 func (c *client) handle() {
+
+	for i := range queue.LogLines.Imports {
+		c.conn.WriteJSON(MakeOutNormal(queue.LogLines.Imports[i].Text))
+	}
+
 	for {
 		select {
 		case <-c.quit:
@@ -44,4 +50,5 @@ func (c *client) handle() {
 			}
 		}
 	}
+
 }
